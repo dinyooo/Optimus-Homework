@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ditya Pratama | Hardware, Software & Creative Media Specialist</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#070b09',
+                            card: 'rgba(15, 25, 20, 0.65)',
+                            cardHover: 'rgba(20, 38, 29, 0.85)',
+                            border: 'rgba(16, 185, 129, 0.2)',
+                            borderHover: 'rgba(0, 255, 157, 0.6)',
+                            emerald: '#10b981',
+                            neon: '#00ff9d',
+                            darkEmerald: '#047857',
+                            glow: 'rgba(0, 255, 157, 0.15)',
+                            textMuted: '#9ca3af'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'Courier New', 'monospace']
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 3s infinite alternate',
+                        'spin-slow': 'spin 12s linear infinite',
+                        'marquee': 'marquee 25s linear infinite',
+                        'marquee-reverse': 'marqueeReverse 25s linear infinite',
+                        'float': 'float 6s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%': { boxShadow: '0 0 15px rgba(0, 255, 157, 0.2), inset 0 0 15px rgba(0, 255, 157, 0.1)' },
+                            '100%': { boxShadow: '0 0 35px rgba(0, 255, 157, 0.5), inset 0 0 25px rgba(0, 255, 157, 0.25)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' }
+                        },
+                        marqueeReverse: {
+                            '0%': { transform: 'translateX(-50%)' },
+                            '100%': { transform: 'translateX(0%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom Cyberpunk & Glassmorphism Styles -->
+    <style>
+        body {
+            background-color: #070b09;
+            color: #e5e7eb;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070b09;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #059669;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00ff9d;
+            box-shadow: 0 0 10px #00ff9d;
+        }
+
+        /* Cyberpunk Grid Background */
+        .cyber-grid {
+            background-image: 
+                linear-gradient(to right, rgba(16, 185, 129, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(16, 185, 129, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Ambient Glowing Spheres */
+        .glow-orb-emerald {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 255, 157, 0.18) 0%, rgba(16, 185, 129, 0.05) 50%, transparent 80%);
+            filter: blur(60px);
+            pointer-events: none;
+        }
+
+        /* Cyber Glassmorphism Card Effect */
+        .glass-card {
+            background: rgba(12, 22, 17, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 255, 157, 0.6);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px -10px rgba(0, 255, 157, 0.25);
+        }
+
+        /* Neon Text Glow */
+        .neon-text-emerald {
+            color: #00ff9d;
+            text-shadow: 0 0 8px rgba(0, 255, 157, 0.6), 0 0 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .neon-border-glow {
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.3), inset 0 0 10px rgba(0, 255, 157, 0.15);
+        }
+
+        /* Button Hover Cyber Effect */
+        .cyber-btn {
+            position: relative;
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .cyber-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        .cyber-btn:hover::before {
+            left: 100%;
+        }
+        .cyber-btn:hover {
+            box-shadow: 0 0 25px rgba(0, 255, 157, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Typing Caret Animation */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+            color: #00ff9d;
+            margin-left: 2px;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="cyber-grid min-h-screen selection:bg-emerald-500 selection:text-black relative">
+
+    <!-- Interactive Canvas Particle Background -->
+    <canvas id="cyberCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
+
+    <!-- Background Glow Orbs -->
+    <div class="glow-orb-emerald w-[500px] h-[500px] -top-32 -left-32 z-0"></div>
+    <div class="glow-orb-emerald w-[600px] h-[600px] top-[40%] -right-48 z-0"></div>
+    <div class="glow-orb-emerald w-[450px] h-[450px] bottom-10 left-10 z-0"></div>
+
+    <!-- Toast Notification for Copy Email -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 bg-emerald-950/90 border border-emerald-400 text-emerald-300 px-5 py-3 rounded-xl shadow-2xl backdrop-blur-md">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-xl"></i>
+        <div>
+            <p class="font-bold text-sm text-white">Copied to Clipboard!</p>
+            <p class="text-xs text-emerald-300/80" id="toast-message">Email copied successfully.</p>
+        </div>
+    </div>
+
+    <!-- 1. Sleek Floating Glassmorphism Navbar -->
+    <header class="fixed top-4 inset-x-0 mx-auto w-[92%] max-w-6xl z-50">
+        <nav class="glass-card rounded-2xl px-5 py-3 flex items-center justify-between border-emerald-500/20 shadow-lg shadow-black/50">
+            <!-- Brand Logo -->
+            <a href="#hero" class="flex items-center gap-2 group">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-700 flex items-center justify-center font-mono font-black text-black text-lg group-hover:scale-105 transition-transform duration-300 shadow-[0_0_15px_rgba(0,255,157,0.4)]">
+                    D
+                </div>
+                <span class="font-mono font-bold text-xl tracking-wider text-white group-hover:text-emerald-400 transition-colors">
+                    DITYA<span class="text-emerald-400">.DEV</span>
+                </span>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <div class="hidden md:flex items-center gap-1 font-mono text-xs uppercase tracking-wider">
+                <a href="#hero" class="px-4 py-2 rounded-lg text-gray-300 hover:text-emerald-300 hover:bg-emerald-950/40 transition-all active-nav">Home</a>
+                <a href="#biodata" class="px-4 py-2 rounded-lg text-gray-300 hover:text-emerald-300 hover:bg-emerald-950/40 transition-all">About</a>
+                <a href="#skills" class="px-4 py-2 rounded-lg text-gray-300 hover:text-emerald-300 hover:bg-emerald-950/40 transition-all">Skills</a>
+                <a href="#projects" class="px-4 py-2 rounded-lg text-gray-300 hover:text-emerald-300 hover:bg-emerald-950/40 transition-all">Portfolio</a>
+                <a href="#contact" class="px-4 py-2 rounded-lg text-gray-300 hover:text-emerald-300 hover:bg-emerald-950/40 transition-all">Contact</a>
+            </div>
+
+            <!-- CTA / Contact Quick Link -->
+            <div class="hidden md:flex items-center gap-3">
+                <button onclick="copyToClipboard('adityaadhipratama@gmail.com', 'Email copied!')" class="cyber-btn px-4 py-2 rounded-xl text-black font-semibold text-xs uppercase tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> Quick Email
+                </button>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-emerald-400 hover:text-white p-2 text-xl focus:outline-none" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </nav>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden mt-2 glass-card rounded-2xl p-5 flex-col gap-3 font-mono text-sm border-emerald-500/30">
+            <a href="#hero" class="mobile-link py-2 px-3 rounded-lg text-gray-200 hover:bg-emerald-900/40 hover:text-emerald-300">Home</a>
+            <a href="#biodata" class="mobile-link py-2 px-3 rounded-lg text-gray-200 hover:bg-emerald-900/40 hover:text-emerald-300">About</a>
+            <a href="#skills" class="mobile-link py-2 px-3 rounded-lg text-gray-200 hover:bg-emerald-900/40 hover:text-emerald-300">Skills</a>
+            <a href="#projects" class="mobile-link py-2 px-3 rounded-lg text-gray-200 hover:bg-emerald-900/40 hover:text-emerald-300">Portfolio</a>
+            <a href="#contact" class="mobile-link py-2 px-3 rounded-lg text-gray-200 hover:bg-emerald-900/40 hover:text-emerald-300">Contact</a>
+            <div class="pt-2 border-t border-emerald-900/50 flex gap-3">
+                <button onclick="copyToClipboard('adityaadhipratama@gmail.com', 'Email copied!')" class="w-full cyber-btn py-2.5 rounded-xl text-black font-semibold text-xs uppercase tracking-wider text-center">
+                    Copy Email
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="relative z-10 pt-28">
+
+        <!-- 2. Hero Section -->
+        <section id="hero" class="min-h-[88vh] flex items-center justify-center px-6 max-w-6xl mx-auto py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+                
+                <!-- Hero Left: Text Content -->
+                <div class="lg:col-span-7 flex flex-col justify-center space-y-6">
+                    
+                    <!-- Live Status Badge -->
+                    <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full glass-card border-emerald-500/30 w-fit">
+                        <span class="relative flex h-2.5 w-2.5">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                        </span>
+                        <span class="text-xs font-mono text-emerald-300 font-medium">
+                            Udayana University • Informatics '26
+                        </span>
+                    </div>
+
+                    <!-- Main Headline -->
+                    <div>
+                        <h2 class="text-xs md:text-sm font-mono text-emerald-400 tracking-widest uppercase mb-2">
+                            // Hello, World! I am
+                        </h2>
+                        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight">
+                            I Gede Aditya <br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500">
+                                Adhi Pratama
+                            </span>
+                        </h1>
+                        <!-- Dynamic Typing Role -->
+                        <div class="h-10 mt-3 font-mono text-lg sm:text-2xl text-emerald-300 flex items-center">
+                            <span class="text-gray-500 mr-2">></span>
+                            <span id="typing-text" class="typing-cursor font-semibold"></span>
+                        </div>
+                    </div>
+
+                    <!-- Short Bio Statement -->
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed max-w-xl">
+                        Informatics student passionate about bridging hardware innovation with software engineering, augmented by creative videography and visual media production.
+                    </p>
+
+                    <!-- CTA Buttons & Social Links -->
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <a href="#projects" class="cyber-btn px-6 py-3.5 rounded-xl text-black font-extrabold text-xs uppercase tracking-wider flex items-center gap-2 shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+                            <i class="fa-solid fa-code text-sm"></i> Explore Projects
+                        </a>
+                        <a href="#contact" class="glass-card px-6 py-3.5 rounded-xl text-emerald-300 hover:text-white font-mono text-xs uppercase tracking-wider flex items-center gap-2 border-emerald-500/30 hover:border-emerald-400">
+                            <i class="fa-solid fa-comments"></i> Get In Touch
+                        </a>
+                    </div>
+
+                    <!-- Social Icons Strip -->
+                    <div class="flex items-center gap-4 pt-4 border-t border-emerald-900/40">
+                        <span class="text-xs font-mono text-gray-500">CONNECT:</span>
+                        <a href="https://github.com/dinyooo" target="_blank" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-gray-300 hover:text-emerald-400 hover:border-emerald-400 transition-all" title="GitHub">
+                            <i class="fa-brands fa-github text-lg"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/ditya-pratama-387587420/" target="_blank" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-gray-300 hover:text-emerald-400 hover:border-emerald-400 transition-all" title="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in text-lg"></i>
+                        </a>
+                        <a href="https://www.instagram.com/dttyap/" target="_blank" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-gray-300 hover:text-emerald-400 hover:border-emerald-400 transition-all" title="Instagram">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                        </a>
+                        <button onclick="copyToClipboard('adityaadhipratama@gmail.com', 'Email address copied!')" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-gray-300 hover:text-emerald-400 hover:border-emerald-400 transition-all" title="Copy Email">
+                            <i class="fa-solid fa-envelope text-lg"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Hero Right: Interactive Frame & Profile Graphic -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-72 h-72 sm:w-88 sm:h-88 lg:w-96 lg:h-96">
+                        
+                        <!-- Rotating Glowing Ring 1 -->
+                        <div class="absolute inset-0 rounded-3xl border-2 border-dashed border-emerald-500/40 animate-spin-slow"></div>
+                        
+                        <!-- Pulsing Glow Ring 2 -->
+                        <div class="absolute -inset-3 rounded-3xl border border-emerald-400/20 animate-pulse-glow"></div>
+
+                        <!-- Inner Glass Card Container -->
+                        <div class="absolute inset-2 glass-card rounded-2xl overflow-hidden p-3 border-emerald-400/40 flex flex-col justify-between group">
+                            
+                            <!-- Image Frame / Placeholder Artwork -->
+                            <div class="relative w-full h-full rounded-xl overflow-hidden bg-emerald-950/60 flex items-center justify-center">
+                                <img src="profilepict.jpeg" 
+                                     alt="Ditya Pratama" 
+                                     class="w-full h-full object-cover object-center grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 opacity-80 group-hover:opacity-100"
+                                     onerror="this.onerror=null; this.src='https://placehold.co/600x600/091711/00ff9d?text=DITYA+PRATAMA';" />
+                                
+                                <div class="absolute inset-0 bg-gradient-to-t from-emerald-950 via-transparent to-transparent"></div>
+                                
+                                <!-- Floating Tech Tag on Frame -->
+                                <div class="absolute bottom-3 left-3 right-3 glass-card p-3 rounded-xl border-emerald-500/40 flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-microchip text-emerald-400"></i>
+                                        <span class="text-xs font-mono font-bold text-white">Ditya Pratama</span>
+                                    </div>
+                                    <span class="text-[10px] font-mono text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">
+                                        INF '26
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Corner Cyber Decors -->
+                        <div class="absolute -top-2 -left-2 w-5 h-5 border-t-2 border-l-2 border-emerald-400"></div>
+                        <div class="absolute -top-2 -right-2 w-5 h-5 border-t-2 border-r-2 border-emerald-400"></div>
+                        <div class="absolute -bottom-2 -left-2 w-5 h-5 border-b-2 border-l-2 border-emerald-400"></div>
+                        <div class="absolute -bottom-2 -right-2 w-5 h-5 border-b-2 border-r-2 border-emerald-400"></div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 3. Dual Cyber Ticker / Marquee Band -->
+        <section class="py-6 border-y border-emerald-500/20 bg-emerald-950/20 overflow-hidden my-12">
+            <div class="flex whitespace-nowrap animate-marquee">
+                <div class="flex items-center gap-8 text-xs sm:text-sm font-mono tracking-widest uppercase text-emerald-300/80">
+                    <span><i class="fa-solid fa-bolt text-emerald-400 mr-2"></i> Hardware Troubleshooting</span>
+                    <span class="text-emerald-600">///</span>
+                    <span><i class="fa-solid fa-code text-emerald-400 mr-2"></i> Software Engineering</span>
+                    <span class="text-emerald-600">///</span>
+                    <span><i class="fa-solid fa-video text-emerald-400 mr-2"></i> Creative Videography</span>
+                    <span class="text-emerald-600">///</span>
+                    <span><i class="fa-solid fa-camera text-emerald-400 mr-2"></i> Photography</span>
+                    <span class="text-emerald-600">///</span>
+                    <span><i class="fa-solid fa-graduation-cap text-emerald-400 mr-2"></i> Udayana University Informatics '26</span>
+                    <span class="text-emerald-600">///</span>
+                </div>
+                <div class="flex items-center gap-8 text-xs sm:text-sm font-mono tracking-widest uppercase text-emerald-300/80 ml-8">
+                    <span><i class="fa-solid fa-bolt text-emerald-400 mr-2"></i> Hardware Troubleshooting</span>
+                    <span class="text-emerald-600">///</span>
+                    <span><i class="fa-solid fa-code text-emerald-400 mr-2"></i> Software Engineering</span>
+                    <span class="text-emerald-600">///</span>
+                    <span><i class="fa-solid fa-video text-emerald-400 mr-2"></i> Creative Videography</span>
+                    <span class="text-emerald-600">///</span>
+                    <span><i class="fa-solid fa-camera text-emerald-400 mr-2"></i> Photography</span>
+                    <span class="text-emerald-600">///</span>
+                    <span><i class="fa-solid fa-graduation-cap text-emerald-400 mr-2"></i> Udayana University Informatics '26</span>
+                    <span class="text-emerald-600">///</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Personal Biodata (Bento Grid Style) -->
+        <section id="biodata" class="max-w-6xl mx-auto px-6 py-16">
+            <div class="mb-12">
+                <p class="font-mono text-emerald-400 text-xs tracking-widest uppercase mb-1">// SYSTEM_PROFILE.SYS</p>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                    Personal <span class="neon-text-emerald">Biodata</span> & Background
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-emerald-400 to-transparent mt-3 rounded-full"></div>
+            </div>
+
+            <!-- Bento Grid Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                
+                <!-- Card 1: Full Name (Wide Card) -->
+                <div class="glass-card md:col-span-2 p-6 rounded-2xl relative overflow-hidden group">
+                    <span class="absolute top-4 right-4 font-mono text-3xl font-black text-emerald-500/10 group-hover:text-emerald-500/20 transition-colors">01</span>
+                    <div class="flex items-center gap-3 text-emerald-400 font-mono text-xs uppercase mb-3">
+                        <i class="fa-solid fa-user-gear"></i> Identity Information
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">I Gede Aditya Adhi Pratama</h3>
+                    <p class="text-emerald-300/80 font-mono text-sm mb-4">Known as "Ditya Pratama"</p>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        An enthusiastic Informatics undergraduate dedicated to mastering both digital software interfaces and physical hardware diagnostics, combined with visual storytelling skills.
+                    </p>
+                </div>
+
+                <!-- Card 2: Academic Status -->
+                <div class="glass-card p-6 rounded-2xl relative group">
+                    <span class="absolute top-4 right-4 font-mono text-3xl font-black text-emerald-500/10 group-hover:text-emerald-500/20 transition-colors">02</span>
+                    <div class="flex items-center gap-3 text-emerald-400 font-mono text-xs uppercase mb-3">
+                        <i class="fa-solid fa-graduation-cap"></i> Education
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-1">Udayana University</h4>
+                    <p class="text-xs text-emerald-300 font-mono mb-3">Informatics • Class of 2026</p>
+                    <div class="inline-block px-3 py-1 rounded-lg bg-emerald-950 border border-emerald-500/30 text-[11px] font-mono text-emerald-300">
+                        Active Student
+                    </div>
+                </div>
+
+                <!-- Card 3: Location -->
+                <div class="glass-card p-6 rounded-2xl relative group">
+                    <span class="absolute top-4 right-4 font-mono text-3xl font-black text-emerald-500/10 group-hover:text-emerald-500/20 transition-colors">03</span>
+                    <div class="flex items-center gap-3 text-emerald-400 font-mono text-xs uppercase mb-3">
+                        <i class="fa-solid fa-location-dot"></i> Base
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-1">Bali, Indonesia</h4>
+                    <p class="text-xs text-gray-400 mb-4">Udayana Campus Hub</p>
+                    <div class="flex items-center gap-2 text-xs font-mono text-emerald-300">
+                        <i class="fa-solid fa-clock text-emerald-400"></i> UTC+8 (WITA)
+                    </div>
+                </div>
+
+                <!-- Card 4: Languages (Spanning bottom) -->
+                <div class="glass-card md:col-span-3 lg:col-span-4 p-6 rounded-2xl relative group">
+                    <span class="absolute top-4 right-4 font-mono text-3xl font-black text-emerald-500/10 group-hover:text-emerald-500/20 transition-colors">04</span>
+                    <div class="flex items-center gap-3 text-emerald-400 font-mono text-xs uppercase mb-3">
+                        <i class="fa-solid fa-language"></i> Communication Languages
+                    </div>
+                    <div class="flex flex-wrap gap-4 mt-2">
+                        <div class="flex items-center gap-3 bg-emerald-950/60 border border-emerald-500/30 px-4 py-2.5 rounded-xl">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                            <div>
+                                <p class="text-xs font-bold text-white font-mono">Bahasa Indonesia</p>
+                                <p class="text-[10px] text-emerald-300/70 font-mono">Native / Fluent</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 bg-emerald-950/60 border border-emerald-500/30 px-4 py-2.5 rounded-xl">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                            <div>
+                                <p class="text-xs font-bold text-white font-mono">English</p>
+                                <p class="text-[10px] text-emerald-300/70 font-mono">Intermediate / Technical</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 5. Skills & Expertise -->
+        <section id="skills" class="max-w-6xl mx-auto px-6 py-16">
+            <div class="mb-12">
+                <p class="font-mono text-emerald-400 text-xs tracking-widest uppercase mb-1">// SKILL_MATRIX.LOG</p>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                    Skills & <span class="neon-text-emerald">Expertise</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-emerald-400 to-transparent mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Category 1: Hardware & Software -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-950 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-xl mb-5 shadow-[0_0_15px_rgba(0,255,157,0.2)]">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Hardware & Software</h3>
+                        <p class="text-xs text-gray-400 mb-6 leading-relaxed">
+                            Diagnostics, PC building, hardware repair, software installations, system troubleshooting, and IT infrastructure support. (Including Laptop)
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-emerald-900/50">
+                        <span class="px-3 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+                            Hardware Repair
+                        </span>
+                        <span class="px-3 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+                            PC Assembly
+                        </span>
+                        <span class="px-3 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+                            OS Deployment
+                        </span>
+                        <span class="px-3 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+                            Networking
+                        </span>
+                        <span class="px-3 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+                            System Config
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Category 2: Creative Media -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-950 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-xl mb-5 shadow-[0_0_15px_rgba(0,255,157,0.2)]">
+                            <i class="fa-solid fa-photo-film"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Creative Media</h3>
+                        <p class="text-xs text-gray-400 mb-6 leading-relaxed">
+                            Video editing, cinematography, photo color grading, visual compositions, and digital content creation.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-emerald-900/50">
+                        <span class="px-3 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+                            Videography
+                        </span>
+                        <span class="px-3 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+                            Photography
+                        </span>
+                        <span class="px-3 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+                            Video Editing
+                        </span>
+                        <span class="px-3 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+                            Color Grading
+                        </span>
+                        <span class="px-3 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+                            Visual Effects
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Category 3: Soft Skills & Teamwork -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-950 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-xl mb-5 shadow-[0_0_15px_rgba(0,255,157,0.2)]">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Soft Skills & Collaboration</h3>
+                        <p class="text-xs text-gray-400 mb-6 leading-relaxed">
+                            Analytical problem solving, adaptability, project collaboration, and clear technical communication.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-emerald-900/50">
+                        <span class="px-3 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+                            Problem Solving
+                        </span>
+                        <span class="px-3 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+                            Team Collaboration
+                        </span>
+                        <span class="px-3 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+                            Time Management
+                        </span>
+                        <span class="px-3 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+                            Critical Thinking
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 6. Project Showcase with Filter Tabs -->
+        <section id="projects" class="max-w-6xl mx-auto px-6 py-16">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <p class="font-mono text-emerald-400 text-xs tracking-widest uppercase mb-1">// PORTFOLIO_INDEX.DAT</p>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                        Featured <span class="neon-text-emerald">Projects</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-emerald-400 to-transparent mt-3 rounded-full"></div>
+                </div>
+
+                <!-- Interactive Filter System -->
+                <div class="flex flex-wrap gap-2 glass-card p-1.5 rounded-xl border-emerald-500/30 w-fit">
+                    <button onclick="filterProjects('all')" class="filter-btn active-filter px-4 py-2 rounded-lg text-xs font-mono transition-all text-black bg-emerald-400 font-bold" data-filter="all">
+                        All Works
+                    </button>
+                    <button onclick="filterProjects('hardware')" class="filter-btn px-4 py-2 rounded-lg text-xs font-mono text-gray-300 hover:text-emerald-300 transition-all" data-filter="hardware">
+                        Hardware / Tech
+                    </button>
+                    <button onclick="filterProjects('media')" class="filter-btn px-4 py-2 rounded-lg text-xs font-mono text-gray-300 hover:text-emerald-300 transition-all" data-filter="media">
+                        Media & Video
+                    </button>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-container">
+                
+                <!-- Project Item 1 -->
+                <div class="project-card glass-card rounded-2xl overflow-hidden group flex flex-col justify-between" data-category="hardware">
+                    <div>
+                        <div class="relative h-48 overflow-hidden bg-emerald-950">
+                            <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Custom Rig Assembly" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x400/091711/00ff9d?text=Hardware+Rig';" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-emerald-950 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md text-[10px] font-mono text-emerald-400 border border-emerald-500/30">
+                                Hardware / Tech
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                                Hardware System Assembly & Tuning
+                            </h3>
+                            <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                                Complete hardware custom assembly, thermal management setup, stress-testing diagnostics, and OS optimization.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 flex items-center justify-between font-mono text-xs">
+                        <span class="text-emerald-300">Hardware Tech</span>
+                        <span class="text-gray-500">2021 - Now</span>
+                    </div>
+                </div>
+
+                <!-- Project Item 2 -->
+                <div class="project-card glass-card rounded-2xl overflow-hidden group flex flex-col justify-between" data-category="media">
+                    <div>
+                        <div class="relative h-48 overflow-hidden bg-emerald-950">
+                            <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Cinematic Video Production" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x400/091711/00ff9d?text=Video+Production';" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-emerald-950 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md text-[10px] font-mono text-emerald-400 border border-emerald-500/30">
+                                Media & Video
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                                Cinematic Event Videography
+                            </h3>
+                            <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                                Filming and post-production video editing for my Senior Highschool events, color grading, and dynamic audio synchronization.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 flex items-center justify-between font-mono text-xs">
+                        <span class="text-emerald-300">Videography</span>
+                        <span class="text-gray-500">2024</span>
+                    </div>
+                </div>
+
+                <!-- Project Item 3 -->
+                <div class="project-card glass-card rounded-2xl overflow-hidden group flex flex-col justify-between" data-category="hardware">
+                    <div>
+                        <div class="relative h-48 overflow-hidden bg-emerald-950">
+                            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Hardware Diagnostics" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x400/091711/00ff9d?text=Hardware+Diagnostics';" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-emerald-950 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md text-[10px] font-mono text-emerald-400 border border-emerald-500/30">
+                                Hardware / Tech
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                                Hardware Troubleshooting & Diagnostics
+                            </h3>
+                            <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                                System failure analysis, component testing, board repairs, and preventive hardware maintenance protocols.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 flex items-center justify-between font-mono text-xs">
+                        <span class="text-emerald-300">Troubleshooting</span>
+                        <span class="text-gray-500">2022 - Now</span>
+                    </div>
+                </div>
+
+                <!-- Project Item 4 -->
+                <div class="project-card glass-card rounded-2xl overflow-hidden group flex flex-col justify-between" data-category="media">
+                    <div>
+                        <div class="relative h-48 overflow-hidden bg-emerald-950">
+                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Creative Photography" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x400/091711/00ff9d?text=Photography';" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-emerald-950 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md text-[10px] font-mono text-emerald-400 border border-emerald-500/30">
+                                Media & Video
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                                Visual Media & Photography Series
+                            </h3>
+                            <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                                Bringing out the best aesthetic in every shot through custom digital grading.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 flex items-center justify-between font-mono text-xs">
+                        <span class="text-emerald-300">Photography</span>
+                        <span class="text-gray-500">2023</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 7. Contact & Footer Section -->
+        <section id="contact" class="max-w-6xl mx-auto px-6 py-16">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 relative overflow-hidden border-emerald-500/30 shadow-[0_0_50px_rgba(0,255,157,0.1)]">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-4">
+                        <p class="font-mono text-emerald-400 text-xs tracking-widest uppercase">// CONNECT_INIT.SH</p>
+                        <h2 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight">
+                            Let's Collaborate & <br>
+                            <span class="neon-text-emerald">Build Something Great</span>
+                        </h2>
+                        <p class="text-gray-400 text-sm leading-relaxed max-w-lg">
+                            Open for hardware consultations, software projects, video production inquiries, or campus collaborations.
+                        </p>
+                        
+                        <!-- Interactive Email Click Box -->
+                        <div onclick="copyToClipboard('adityaadhipratama@gmail.com', 'Email copied!')" class="inline-flex items-center gap-4 p-4 rounded-2xl bg-emerald-950/80 border border-emerald-500/40 hover:border-emerald-400 cursor-pointer transition-all group w-full sm:w-auto">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg group-hover:bg-emerald-400 group-hover:text-black transition-colors">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div class="pr-4">
+                                <p class="text-[10px] font-mono text-emerald-300 uppercase">CLICK TO COPY EMAIL</p>
+                                <p class="text-sm sm:text-base font-mono font-bold text-white group-hover:text-emerald-300 transition-colors">
+                                    adityaadhipratama@gmail.com
+                                </p>
+                            </div>
+                            <i class="fa-solid fa-copy text-gray-500 group-hover:text-emerald-400 text-sm ml-auto sm:ml-2"></i>
+                        </div>
+                    </div>
+
+                    <!-- Contact Actions / Social Grid -->
+                    <div class="lg:col-span-5 flex flex-col gap-3">
+                        <a href="mailto:adityaadhipratama@gmail.com" class="cyber-btn w-full py-4 rounded-2xl text-black font-extrabold text-xs uppercase tracking-wider text-center flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-paper-plane text-sm"></i> Send Direct Mail
+                        </a>
+
+                        <div class="grid grid-cols-3 gap-3 pt-2">
+                            <a href="https://github.com/dinyooo" target="_blank" class="glass-card py-3 rounded-xl flex flex-col items-center justify-center text-gray-300 hover:text-emerald-400 hover:border-emerald-400 transition-all gap-1">
+                                <i class="fa-brands fa-github text-xl"></i>
+                                <span class="text-[10px] font-mono">GitHub</span>
+                            </a>
+                            <a href="https://linkedin.com/in/ditya-pratama-387587420/" target="_blank" class="glass-card py-3 rounded-xl flex flex-col items-center justify-center text-gray-300 hover:text-emerald-400 hover:border-emerald-400 transition-all gap-1">
+                                <i class="fa-brands fa-linkedin-in text-xl"></i>
+                                <span class="text-[10px] font-mono">LinkedIn</span>
+                            </a>
+                            <a href="https://instagram.com/dttyap/" target="_blank" class="glass-card py-3 rounded-xl flex flex-col items-center justify-center text-gray-300 hover:text-emerald-400 hover:border-emerald-400 transition-all gap-1">
+                                <i class="fa-brands fa-instagram text-xl"></i>
+                                <span class="text-[10px] font-mono">Instagram</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer Bar -->
+        <footer class="max-w-6xl mx-auto px-6 py-8 border-t border-emerald-900/30 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-gray-500 gap-4">
+            <p>© 2026 I Gede Aditya Adhi Pratama (Ditya Pratama). All rights reserved.</p>
+            <p class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                Informatics • Udayana University
+            </p>
+        </footer>
+
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- 1. Canvas Particle Background System ---
+        const canvas = document.getElementById('cyberCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.8 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(0, 255, 157, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const particleCount = Math.floor(window.innerWidth / 15);
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        // --- 2. Dynamic Typing Effect ---
+        const roles = [
+            "Hardware & Software Specialist",
+            "Informatics Student @ Udayana",
+            "Videographer & Visual Creator",
+            "PC Repair & Systems Technician"
+        ];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById('typing-text');
+
+        function typeEffect() {
+            const currentRole = roles[roleIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 40 : 80;
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                typeSpeed = 2000; // Pause at full string
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        window.onload = function() {
+            typeEffect();
+        };
+
+        // --- 3. Clipboard Copy & Toast Alert ---
+        function copyToClipboard(text, message) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            showToast(message || "Copied to clipboard!");
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.textContent = message;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // --- 4. Portfolio Filter System ---
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-filter') === category) {
+                    btn.classList.add('bg-emerald-400', 'text-black', 'font-bold');
+                    btn.classList.remove('text-gray-300');
+                } else {
+                    btn.classList.remove('bg-emerald-400', 'text-black', 'font-bold');
+                    btn.classList.add('text-gray-300');
+                }
+            });
+
+            cards.forEach(card => {
+                const itemCategory = card.getAttribute('data-category');
+                if (category === 'all' || itemCategory === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // --- 5. Mobile Navigation Menu Toggle ---
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+    </script>
+</body>
+</html>
